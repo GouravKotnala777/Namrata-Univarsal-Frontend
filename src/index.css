@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+/**{
+  box-sizing: border-box;
+}*/
+
+:root {
+  /*color: #ff97a8;
+  color: #ff81ff;
+  color: #8b7eff;
+  color: #7eb4ff;
+  color: #7ef0ff;
+  color: #7effbe;
+  color: #d8ff7e;
+  color: #ffe375;
+  color: #ff7575;
+  color: #ffa375;*/
+  font-family: poppins;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
