@@ -13,7 +13,7 @@ const ScrollAboutUs = () => {
   });
 
   // Animate values based on scroll position
-  const scale = useTransform(scrollYProgress, [0.18, 0.68], [10, 0.5]);
+  const scale = useTransform(scrollYProgress, [0.02, 0.68], [10, 0.5]);
   const scaleXLine = useTransform(scrollYProgress, [0.55, 0.66], [0, 19.5]);
   const opacity = useTransform(scrollYProgress, [0.18, 0.68], [0, 1]);
   const y = useTransform(scrollYProgress, [0.9, 1], ["0%", "-100%"]);
@@ -26,7 +26,7 @@ const ScrollAboutUs = () => {
   const [displayNumber, setDisplayNumber] = useState(0);
 
   // About us paragraph
-  const scaleYParagraph = useTransform(scrollYProgress, [0.67, 0.788], [0, 600]);
+  const scaleYParagraph = useTransform(scrollYProgress, [0.67, 1], [0, 600]);
   //const yParagraph = useTransform(scrollYProgress, [0.67, 0.78, 0.96], [0, -300, -900]);
 //  const displayY = useTransform(scrollYProgress, [0.48, 0.53], [-100, 100]);
 
@@ -51,14 +51,14 @@ const ScrollAboutUs = () => {
 
 
   return (
-    <section ref={aboutUsRef} className="border-4 border-red-500 h-[500vh] bg-gray-100 flex items-center justify-center overflow-x-hidden">
+    <section ref={aboutUsRef} className="h-[500vh] bg-gray-100 flex items-center justify-center overflow-x-hidden">
       <motion.div
         style={{
           position:isFixed?"fixed":"sticky",
           y,
           opacity:opacityParent
         }}
-        className="border-4 border-violet-500 top-0 left-0 w-full h-full">
+        className="top-0 left-0 w-full h-full">
         
         
         

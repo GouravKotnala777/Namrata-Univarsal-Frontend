@@ -8,6 +8,7 @@ import OurGoal from './components/OurGoal';
 import OurClients from './components/OurClients';
 import Footer from './components/Footer';
 import States from './components/States';
+import Owner from './components/Owner';
 
 
 function App() {
@@ -29,12 +30,15 @@ function App() {
       <Divider />
       <OurGoal />
       
+      <States />
       <Divider />
+
+      <Owner />
+      <Divider />
+
       <OurClients />
 
-      <States />
-
-      <Footer />  
+      <Footer />
     </div>
   )
 }

@@ -23,7 +23,7 @@ const OurStory = () => {
                                         transition={{
                                             delay:0.3*index
                                         }}
-                                        className="text-9xl font-bold"
+                                        className="text-9xl font-bold text-gray-700"
                                     >{w}</motion.h1>
                                 ))
                             }
