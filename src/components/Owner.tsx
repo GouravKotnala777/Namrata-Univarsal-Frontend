@@ -53,7 +53,7 @@ const Owner = () => {
             else if (v > 0.35 && v <= 0.65) {
                 setAnimatingStaffImg("staff2");
             }
-            else {
+            else if (v > 0.65 && v <= 1) {
                 setAnimatingStaffImg("staff3");
             }
         });
