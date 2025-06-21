@@ -1,44 +1,350 @@
-import Header from './components/Header'
-import Hero from './components/Hero';
-import ScrollAboutUs from './components/ScrollAboutUs';
-import Welcome from './components/Welcome';
-import Divider from './components/Divider';
-import OurStory from './components/OurStory';
-import OurGoal from './components/OurGoal';
-import OurClients from './components/OurClients';
-import Footer from './components/Footer';
-import States from './components/States';
-import Owner from './components/Owner';
+import "./App.css";
+import {motion, useAnimation} from "motion/react";
+import { useEffect, useState } from "react";
+import Name from "./portfolio/Name";
+import Projects from "./portfolio/Projects";
 
+
+
+const path1 = `M0 10
+              L0 0
+              C24.7 0 49.3 0 74 0
+              C98.7 0 123.3 0 148 0
+              C172.7 0 197.3 0 221.8 0
+              C246.3 0 270.7 0 295.2 0
+              C319.7 0 344.3 0 369 0
+              C393.7 0 418.3 0 443 0
+              C467.7 0 492.3 0 517 0
+              C541.7 0 566.3 0 591 0
+              C615.7 0 640.3 0 664.8 0
+              C689.3 0 713.7 0 738.2 0
+              C762.7 0 787.3 0 812 0
+              C836.7 0 861.3 0 886 0
+              C910.7 0 935.3 0 947.7 0
+              L960 39
+              L960 0
+              L947.7 0
+              C935.3 0 910.7 0 886 0
+              C861.3 0 836.7 0 812 0
+              C787.3 0 762.7 0 738.2 0
+              C713.7 0 689.3 0 664.8 0
+              C640.3 0 615.7 0 591 0
+              C566.3 0 541.7 0 517 0
+              C492.3 0 467.7 0 443 0
+              C418.3 0 393.7 0 369 0
+              C344.3 0 319.7 0 295.2 0
+              C270.7 0 246.3 0 221.8 0
+              C197.3 0 172.7 0 148 0
+              C123.3 0 98.7 0 74 0
+              C49.3 0 24.7 0 12.3 0
+              L0 0Z`;
+
+              
+const path2a = `M0 ${36*5-130}
+              L0 ${34.8*5-130}
+              C24.7 ${33.7*5-130} 49.3 ${31.3*5-130} 74 ${29.3*5-130}
+              C98.7 ${27.3*5-130} 123.3 ${25.7*5-130} 148 ${24.2*5-130}
+              C172.7 ${22.7*5-130} 197.3 ${21.3*5-130} 221.8 ${22.2*5-130}
+              C246.3 ${23*5-130} 270.7 ${26*5-130} 295.2 ${28.2*5-130}
+              C319.7 ${30.3*5-130} 344.3 ${31.7*5-130} 369 ${31*5-130}
+              C393.7 ${30.3*5-130} 418.3 ${27.7*5-130} 443 ${24.5*5-130}
+              C467.7 ${21.3*5-130} 492.3 ${17.7*5-130} 517 ${19.5*5-130}
+              C541.7 ${21.3*5-130} 566.3 ${28.7*5-130} 591 ${31.2*5-130}
+              C615.7 ${33.7*5-130} 640.3 ${31.3*5-130} 664.8 ${27.5*5-130}
+              C689.3 ${23.7*5-130} 713.7 ${18.3*5-130} 738.2 ${16.3*5-130}
+              C762.7 ${14.3*5-130} 787.3 ${15.7*5-130} 812 ${18.2*5-130}
+              C836.7 ${20.7*5-130} 861.3 ${24.3*5-130} 886 ${28*5-130}
+              C910.7 ${31.7*5-130} 935.3 ${35.3*5-130} 947.7 ${37.2*5-130}
+              L960 39
+              L960 0
+              L947.7 0
+              C935.3 0 910.7 0 886 0
+              C861.3 0 836.7 0 812 0
+              C787.3 0 762.7 0 738.2 0
+              C713.7 0 689.3 0 664.8 0
+              C640.3 0 615.7 0 591 0
+              C566.3 0 541.7 0 517 0
+              C492.3 0 467.7 0 443 0
+              C418.3 0 393.7 0 369 0
+              C344.3 0 319.7 0 295.2 0
+              C270.7 0 246.3 0 221.8 0
+              C197.3 0 172.7 0 148 0
+              C123.3 0 98.7 0 74 0
+              C49.3 0 24.7 0 12.3 0
+              L0 0Z`;
+
+//const path2 = `M0 ${36*8-120}
+//              L0 ${34.8*8-120}
+//              C24.7 ${33.7*8-120} 49.3 ${31.3*8-120} 74 ${29.3*8-120}
+//              C98.7 ${27.3*8-120} 123.3 ${25.7*8-120} 148 ${24.2*8-120}
+//              C172.7 ${22.7*8-120} 197.3 ${21.3*8-120} 221.8 ${22.2*8-120}
+//              C246.3 ${23*8-120} 270.7 ${26*8-120} 295.2 ${28.2*8-120}
+//              C319.7 ${30.3*8-120} 344.3 ${31.7*8-120} 369 ${31*8-120}
+//              C393.7 ${30.3*8-120} 418.3 ${27.7*8-120} 443 ${24.5*8-120}
+//              C467.7 ${21.3*8-120} 492.3 ${17.7*8-120} 517 ${19.5*8-120}
+//              C541.7 ${21.3*8-120} 566.3 ${28.7*8-120} 591 ${31.2*8-120}
+//              C615.7 ${33.7*8-120} 640.3 ${31.3*8-120} 664.8 ${27.5*8-120}
+//              C689.3 ${23.7*8-120} 713.7 ${18.3*8-120} 738.2 ${16.3*8-120}
+//              C762.7 ${14.3*8-120} 787.3 ${15.7*8-120} 812 ${18.2*8-120}
+//              C836.7 ${20.7*8-120} 861.3 ${24.3*8-120} 886 ${28*8-120}
+//              C910.7 ${31.7*8-120} 935.3 ${35.3*8-120} 947.7 ${37.2*8-120}
+//              L960 39
+//              L960 0
+//              L947.7 0
+//              C935.3 0 910.7 0 886 0
+//              C861.3 0 836.7 0 812 0
+//              C787.3 0 762.7 0 738.2 0
+//              C713.7 0 689.3 0 664.8 0
+//              C640.3 0 615.7 0 591 0
+//              C566.3 0 541.7 0 517 0
+//              C492.3 0 467.7 0 443 0
+//              C418.3 0 393.7 0 369 0
+//              C344.3 0 319.7 0 295.2 0
+//              C270.7 0 246.3 0 221.8 0
+//              C197.3 0 172.7 0 148 0
+//              C123.3 0 98.7 0 74 0
+//              C49.3 0 24.7 0 12.3 0
+//              L0 0Z`;
+
+
+const path3 = `M0 ${36*7}
+              L0 ${34.8*7}
+              C24.7 ${33.7*7} 49.3 ${31.3*7} 74 ${29.3*7}
+              C98.7 ${27.3*7} 123.3 ${25.7*7} 148 ${24.2*7}
+              C172.7 ${22.7*7} 197.3 ${21.3*7} 221.8 ${22.2*7}
+              C246.3 ${23*7} 270.7 ${26*7} 295.2 ${28.2*7}
+              C319.7 ${30.3*7} 344.3 ${31.7*7} 369 ${31*7}
+              C393.7 ${30.3*7} 418.3 ${27.7*7} 443 ${24.5*7}
+              C467.7 ${21.3*7} 492.3 ${17.7*7} 517 ${19.5*7}
+              C541.7 ${21.3*7} 566.3 ${28.7*7} 591 ${31.2*7}
+              C615.7 ${33.7*7} 640.3 ${31.3*7} 664.8 ${27.5*7}
+              C689.3 ${23.7*7} 713.7 ${18.3*7} 738.2 ${16.3*7}
+              C762.7 ${14.3*7} 787.3 ${15.7*7} 812 ${18.2*7}
+              C836.7 ${20.7*7} 861.3 ${24.3*7} 886 ${28*7}
+              C910.7 ${31.7*7} 935.3 ${35.3*7} 947.7 ${37.2*7}
+              L960 39
+              L960 0
+              L947.7 0
+              C935.3 0 910.7 0 886 0
+              C861.3 0 836.7 0 812 0
+              C787.3 0 762.7 0 738.2 0
+              C713.7 0 689.3 0 664.8 0
+              C640.3 0 615.7 0 591 0
+              C566.3 0 541.7 0 517 0
+              C492.3 0 467.7 0 443 0
+              C418.3 0 393.7 0 369 0
+              C344.3 0 319.7 0 295.2 0
+              C270.7 0 246.3 0 221.8 0
+              C197.3 0 172.7 0 148 0
+              C123.3 0 98.7 0 74 0
+              C49.3 0 24.7 0 12.3 0
+              L0 0Z`;
+
+
+const path4 = `M0 10
+              L0 260.4
+              C24.7 260.4 49.3 260.4 74 260.4
+              C98.7 260.4 123.3 260.4 148 260.4
+              C172.7 260.4 197.3 260.4 221.8 260.4
+              C246.3 260.4 270.7 260.4 295.2 260.4
+              C319.7 260.4 344.3 260.4 369 260.4
+              C393.7 260.4 418.3 260.4 443 260.4
+              C467.7 260.4 492.3 260.4 517 260.4
+              C541.7 260.4 566.3 260.4 591 260.4
+              C615.7 260.4 640.3 260.4 664.8 260.4
+              C689.3 260.4 713.7 260.4 738.2 260.4
+              C762.7 260.4 787.3 260.4 812 260.4
+              C836.7 260.4 861.3 260.4 886 260.4
+              C910.7 260.4 935.3 260.4 947.7 260.4
+              L960 39
+              L960 0
+              L947.7 0
+              C935.3 0 910.7 0 886 0
+              C861.3 0 836.7 0 812 0
+              C787.3 0 762.7 0 738.2 0
+              C713.7 0 689.3 0 664.8 0
+              C640.3 0 615.7 0 591 0
+              C566.3 0 541.7 0 517 0
+              C492.3 0 467.7 0 443 0
+              C418.3 0 393.7 0 369 0
+              C344.3 0 319.7 0 295.2 0
+              C270.7 0 246.3 0 221.8 0
+              C197.3 0 172.7 0 148 0
+              C123.3 0 98.7 0 74 0
+              C49.3 0 24.7 0 12.3 0
+              L0 0Z`;
 
 function App() {
+  const [isHamOpen, setIsHamOpen] = useState<boolean>(false);
+  const controll = useAnimation();
 
+
+  function func (){
+    controll.start({
+        display:"none",
+        opacity:0
+    });
+    controll.start({
+        display:"block",
+        opacity:1
+    });
+  }
+
+  useEffect(() => {
+    func();
+  }, []);
+
+
+
+  const hamToggler = async() => {
+    setIsHamOpen(!isHamOpen);
+  }
+  useEffect(() => {
+    hamToggler();
+  }, []);
 
   return (
-    <div>
-      <Header />
-      <Hero />
+    <div className="overflow-x-hidden">
+      <div className="frame_cont border-15 border-white fixed bg-[#1e0041] top-0 left-0 w-screen h-screen rounded-4xl z-[-1]">
+      </div>
+
+      <motion.svg className="z-30 w-screen h-screen absolute top-[-10px] origin-top"
+        id="visual"
+        viewBox="0 0 900 400"
+        width="900"
+        height="400"
+        animate={{
+          display:isHamOpen?"none":"block"
+        }}
+        transition={{ duration:1.5, ease: "easeInOut" }}
+        xmlns="http://www.w3.org/2000/svg" version="1.1"
+        >
+        <motion.path
+          fill="#ffffff"
+          stroke-linecap="round"
+          stroke-linejoin="miter"
+          initial={{
+            d:path1
+          }}
+          animate={{ d:isHamOpen?[path4, path3, path2a, path1]:[path1, path2a, path3, path4]}}
+          //animate={{ d:path2a}}
+          transition={{ duration:1.2, ease: "easeIn" }}
+        ></motion.path>
+      </motion.svg>
+
+      <header className="z-30 absolute top-[-40px] left-0 w-screen flex justify-between items-center px-10 py-5">
+        <motion.h1
+          initial={{
+            color:"#ffffff"
+          }}
+          animate={{
+            color:isHamOpen?"#ffffff":"#000000"
+          }}
+          transition={{
+            duration:0.6
+          }}
+          className="text-[2rem]"
+        >
+          LOGO
+        </motion.h1>
+        <nav className="text-4xl flex items-center gap-13 font-bold">
+          {
+            ["WORK", "SERVICES", "STUDIO", "CONTACT"].map((item, index) => (
+              <motion.div
+                initial={{
+                  y:-80
+                }}
+                animate={{
+                  y:isHamOpen?-80:0
+                }}
+                transition={{
+                  duration:1,
+                  delay:0.3*index
+                }}
+                className="cursor-pointer relative w-[200px] h-[150px]"
+              >
+                <motion.span
+                  className="text-black absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]"
+                >{item}</motion.span>
+                <motion.span
+                  initial={{
+                    clipPath:"inset(0% 0% 0% 0%)"
+                  }}
+                  whileHover={{
+                    //color:"red"
+                    clipPath:"inset(0% 100% 0% 0%)"
+                  }}
+                  className="text-red-400 bg-clip-text absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]"
+                >{item}</motion.span>
+              </motion.div>
+            ))
+          }
+        </nav>
+        <div className="cursor-pointer" onClick={hamToggler}>
+          <svg width="30" height="61" viewBox="0 0 30 61" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_1490_325)">
+            <motion.path
+              animate={{
+                stroke:isHamOpen?"#ffffff":"#000000",
+                d:isHamOpen?"M5.07 11 C5.07 27.33 5.07 43.66 5.07 60":"M5.07 33 C5.07 33 5.07 33 5.07 33"
+              }}
+              transition={{
+                duration:0.6
+              }}
+              className="lineA" stroke-width="2" data-original="M5.07849 11V60"
+            ></motion.path>
+            <motion.path
+              animate={{
+                stroke:isHamOpen?"#ffffff":"#000000",
+                d:isHamOpen?"M15.07 16 C15.07 25.66 15.07 35.33 15.07 45":"M9.07 33 C15.07 33 15.07 33 21.07 33"
+              }}
+              transition={{
+                duration:0.6
+              }}
+              className="lineB" stroke-width="2" data-original="M15.0785 16V45"
+            ></motion.path>
+            <motion.path
+              animate={{
+                stroke:isHamOpen?"#ffffff":"#000000",
+                d:isHamOpen?"M25.07 1 C25.07 17.33 25.07 33.66 25.07 50":"M25.07 33 C25.07 33 25.07 33 25.07 33"
+              }}
+              transition={{
+                duration:0.6
+              }}
+              className="lineC" stroke-width="2" data-original="M25.0784 1V50"
+            ></motion.path>
+            <motion.path
+              animate={{
+                stroke:isHamOpen?"#ffffff":"#000000",
+                d:isHamOpen?"M5.07 11 C6.38 10.14 7.69 9.29 9 8.44 9 6.83 9 5.22 9 3.61 7.69 2.74 6.38 1.87 5.07 1 3.74 1.87 2.41 2.74 1.07 3.61 1.05 5.22 1.02 6.83 1 8.44 2.35 9.29 3.71 10.14 5.07 11":"M5.07 38 C6.38 37.14 7.69 36.29 9 35.44 9 33.83 9 32.22 9 30.61 7.69 29.74 6.38 28.87 5.07 28 3.74 28.87 2.41 29.74 1.07 30.61 1.05 32.22 1.02 33.83 1 35.44 2.35 36.29 3.71 37.14 5.07 38"
+              }}
+              transition={{
+                duration:0.6
+              }}
+              className="pointA" fill-rule="evenodd" clip-rule="evenodd" stroke-width="2" data-original="M5.07843 11L9 8.4482L9 3.61273L5.07843 1L1.07843 3.61273L1 8.4482L5.07843 11Z"
+            ></motion.path>
+            <motion.path
+              animate={{
+                stroke:isHamOpen?"#ffffff":"#000000",
+                d:isHamOpen?"M25.07 60 C26.38 59.14 27.69 58.29 29 57.44 29 55.83 29 54.22 29 52.61 27.69 51.74 26.38 50.87 25.07 50 23.74 50.87 22.41 51.74 21.07 52.61 21.05 54.22 21.02 55.83 21 57.44 22.35 58.29 23.71 59.14 25.07 60":"M25.07 38 C26.38 37.14 27.69 36.29 29 35.44 29 33.83 29 32.22 29 30.61 27.69 29.74 26.38 28.87 25.07 28 23.74 28.87 22.41 29.74 21.07 30.61 21.05 32.22 21.02 33.83 21 35.44 22.35 36.29 23.71 37.14 25.07 38"
+              }}
+              transition={{
+                duration:0.6
+              }}
+              className="pointB" fill-rule="evenodd" clip-rule="evenodd" stroke-width="2" data-original="M25.0784 60L29 57.4482V52.6127L25.0784 50L21.0784 52.6127L21 57.4482L25.0784 60Z"
+            ></motion.path>
+            </g>
+          </svg>
+        </div>
+      </header>
 
       
-      <ScrollAboutUs />
 
-      <Welcome />
 
-      <Divider />
-      <OurStory />
-      
-      <Divider />
-      <OurGoal />
-      
-      <States />
-      <Divider />
+      <Name />
 
-      <Owner />
-      <Divider />
 
-      <OurClients />
-
-      <Footer />
+      <Projects />
     </div>
   )
 }
